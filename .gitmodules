@@ -1,0 +1,9 @@
+[submodule "vimrc.git"]
+	path = vimrc.git
+	url = https://github.com/melvkim/vimrc
+[submodule "zsh.git/oh-my-zsh"]
+	path = zsh.git/oh-my-zsh
+	url = https://github.com/melvkim/oh-my-zsh
+[submodule "zshrc.git"]
+	path = zshrc.git
+	url = https://github.com/melvkim/zshrc
