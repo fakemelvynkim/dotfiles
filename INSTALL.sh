@@ -1,12 +1,15 @@
 #!/bin/sh
 export DOTFILES_HOME_DIRECTORY=""
 
-check_requirements() {
+set_dotfiles_home_directory() {
+    # main
     # Check if dotfiles home directory variable is set
     if [ -z "${DOTFILES_HOME_DIRECTORY}" ]; then
         DOTFILES_HOME_DIRECTORY="${HOME}/.dotfiles"
     fi
-    
+}
+
+check_requirements() {
     # Die if dotfiles directory exists
     if [ -d "${DOTFILES_HOME_DIRECTORY}" ]; then
         echo "dotfiles exist in ${DOTFILES_HOME_DIRECTORY}"
@@ -61,7 +64,8 @@ die() {
     exit 1
 }
 
-# main
+
+DOTFILES_HOME_DIRECTORY=$(set_dotfiles_home_directory)
 check_requirements
 clone_dotfiles
 add_symbolic_links

@@ -43,7 +43,7 @@
 
 [core]
 	# Use custom `.gitignore` and `.gitattributes`
-	excludesfile = ~/.gitignore
+	excludesfile = ~/.gitignore_global
 	attributesfile = ~/.gitattributes
 	# Treat spaces before tabs and all kinds of trailing whitespace as an error.
 	# [default] trailing-space: looks for spaces at the end of a line
@@ -55,7 +55,7 @@
 	trustctime = false
 	editor = /usr/local/bin/vim # By default, brew installs at /usr/local/bin/vim:
 	safecrlf = true
-	autocrlf = input
+	autocrlf = false
 	filemode = false
 
 [color]
@@ -98,7 +98,7 @@
 
 # melv-kim specific
 [user]
-	name = Melv Kim
+	name = Melvyn Kim
 	email = melvkim@gmail.com
 
 [merge]
@@ -112,3 +112,13 @@
 	cmd = diffmerge \"$LOCAL\" \"$REMOTE\"	
 [credential]
 	helper = osxkeychain
+[filter "media"]
+	required = true
+	clean = git media clean %f
+	smudge = git media smudge %f
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
+[mergetool "sourcetree"]
+	cmd = /Applications/develop/git/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
