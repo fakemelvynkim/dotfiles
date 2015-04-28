@@ -130,3 +130,6 @@ Projects
 
 # Powerline-specific cruft that isn't ignored in their own plugin
 Powerline_*.cache
+
+# vim extensions
+.undo_history/*

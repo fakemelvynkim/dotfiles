@@ -102,14 +102,14 @@
 	email = melvkim@gmail.com
 
 [merge]
-	tool = diffmerge
+    tool
 [mergetool "diffmerge"]
-	cmd = "diffmerge --merge --result=\"$MERGED\" \"$LOCAL\" \"$(if test -f \"$BASE\"; then echo \"$BASE\"; else echo \"$LOCAL\"; fi)\" \"$REMOTE\""
+	cmd = "/Applications/develop/git/DiffMerge/Contents/MacOS/DiffMerge --merge --result=\"$MERGED\" \"$LOCAL\" \"$(if test -f \"$BASE\"; then echo \"$BASE\"; else echo \"$LOCAL\"; fi)\" \"$REMOTE\""
 	trustExitCode = true
 [diff]
 	tool = diffmerge
 [difftool "diffmerge"]
-	cmd = diffmerge \"$LOCAL\" \"$REMOTE\"	
+	cmd = /Applications/develop/git/DiffMerge/Contents/MacOS/DiffMerge \"$LOCAL\" \"$REMOTE\"	
 [credential]
 	helper = osxkeychain
 [filter "media"]
