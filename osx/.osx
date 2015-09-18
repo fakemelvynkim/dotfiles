@@ -697,6 +697,14 @@ defaults write com.google.Chrome ExtensionInstallSources -array "https://gist.gi
 defaults write com.google.Chrome.canary ExtensionInstallSources -array "https://gist.githubusercontent.com/" "http://userscripts.org/*"
 
 ###############################################################################
+# Google Software Update Disabler
+###############################################################################
+# https://www.wireload.net/products/guu-google-update-uninstaller/
+~/Library/Google/GoogleSoftwareUpdate/GoogleSoftwareUpdate.bundle/Contents/Resources/GoogleSoftwareUpdateAgent.app/Contents/Resources/ksinstall --uninstall
+rm -rf ~/Library/Google/GoogleSoftwareUpdate
+touch ~/Library/Google/GoogleSoftwareUpdate
+
+###############################################################################
 # GPGMail 2                                                                   #
 ###############################################################################
 
