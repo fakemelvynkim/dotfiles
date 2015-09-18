@@ -127,6 +127,9 @@ defaults write com.apple.finder CreateDesktop -bool false
 # Works in Finder, Preview, TextEdit, etc
 defaults write -g NSScrollViewRubberbanding -int 0
 
+# Disable creation of .DS_Store
+defaults write com.apple.desktopservices DSDontWriteNetworkStores true
+
 ###############################################################################
 # SSD-specific tweaks                                                         #
 ###############################################################################
