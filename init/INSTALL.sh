@@ -16,10 +16,10 @@ check_requirements() {
         read -p "Do you wish to re-install dotfiles? [Y]es/[N]o: " prompt_yes_or_no
         case $prompt_yes_or_no in 
             [Yy]*) 
-                echo "Removing existing melvable directory.."
+                echo "Removing existing dotfiles directory.."
                 rm -rf "${DOTFILES_HOME_DIRECTORY}"
-                echo "Cloning melvable.."
-                wget --quiet --no-check-certificate https://raw.github.com/melvkim/dotfiles/master/INSTALL.sh -O - | sh
+                echo "Cloning dotfiles.."
+                wget --quiet --no-check-certificate https://raw.github.com/melvynkim/dotfiles/master/INSTALL.sh -O - | sh
                 ;;
             [Nn]*)
                 die_on_warning "dotfiles not installed."
@@ -33,7 +33,7 @@ check_requirements() {
 
 clone_dotfiles() {
     echo "Cloning dotfiles to ${DOTFILES_HOME_DIRECTORY}.."
-    hash git >/dev/null 2>&1 && /usr/bin/env git clone --quiet --recursive "https://github.com/melvkim/dotfiles" ${DOTFILES_HOME_DIRECTORY} || 
+    hash git >/dev/null 2>&1 && /usr/bin/env git clone --quiet --recursive "https://github.com/melvynkim/dotfiles" ${DOTFILES_HOME_DIRECTORY} || 
     die "git is not installed."    
 }
 
@@ -50,8 +50,6 @@ add_symbolic_links() {
     ln -s "${DOTFILES_HOME_DIRECTORY}/git/.gitignore_global" "${HOME}/.gitignore_global"
     ln -s "${DOTFILES_HOME_DIRECTORY}/git/.gitconfig" "${HOME}/.gitconfig"
     ln -s "${DOTFILES_HOME_DIRECTORY}/git/.gitattributes" "${HOME}/.gitattributes"
-
-
 }
 
 die_on_warning() {
@@ -61,6 +59,7 @@ die_on_warning() {
 }
 die() {
     echo "ERROR: $1"
+    echo "Report issues at http://github.com/melvynkim/dotfiles"
     exit 1
 }
 

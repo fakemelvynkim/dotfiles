@@ -55,7 +55,7 @@
 	# More info: <http://www.git-tower.com/blog/make-git-rebase-safe-on-osx/>
 	trustctime = false
 	editor = /usr/local/bin/vim # By default, brew installs at /usr/local/bin/vim:
-	safecrlf = true
+	safecrlf = false
 	autocrlf = false
 	filemode = false
 
@@ -97,29 +97,14 @@
 [push]
 	default = matching
 
-# melv-kim specific
+# TODO: change to the actual user
 [user]
-	name = Melvyn Kim
-	email = melvkim@gmail.com
+    name = Melvyn Kim 
+    email = melvynkim@gmail.com
 
-[merge]
-    tool
-[mergetool "diffmerge"]
-	cmd = "/Applications/develop/git/DiffMerge/Contents/MacOS/DiffMerge --merge --result=\"$MERGED\" \"$LOCAL\" \"$(if test -f \"$BASE\"; then echo \"$BASE\"; else echo \"$LOCAL\"; fi)\" \"$REMOTE\""
-	trustExitCode = true
-[diff]
-	tool = diffmerge
-[difftool "diffmerge"]
-	cmd = /Applications/develop/git/DiffMerge/Contents/MacOS/DiffMerge \"$LOCAL\" \"$REMOTE\"	
 [credential]
 	helper = osxkeychain
 [filter "media"]
 	required = true
 	clean = git media clean %f
 	smudge = git media smudge %f
-[difftool "sourcetree"]
-	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-	path = 
-[mergetool "sourcetree"]
-	cmd = /Applications/develop/git/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
-	trustExitCode = true
