@@ -1,23 +1,16 @@
 #!/bin/sh
-export DOTFILES_HOME_DIRECTORY=""
+export DOTFILES_HOME=""
 
-set_dotfiles_home_directory() {
-    # main
-    # Check if dotfiles home directory variable is set
-    if [ -z "${DOTFILES_HOME_DIRECTORY}" ]; then
-        DOTFILES_HOME_DIRECTORY="${HOME}/.dotfiles"
-    fi
-}
 
 check_requirements() {
     # Die if dotfiles directory exists
-    if [ -d "${DOTFILES_HOME_DIRECTORY}" ]; then
-        echo "dotfiles exist in ${DOTFILES_HOME_DIRECTORY}"
+    if [ -d "${DOTFILES_HOME}" ]; then
+        echo "dotfiles exist in ${DOTFILES_HOME}"
         read -p "Do you wish to re-install dotfiles? [Y]es/[N]o: " prompt_yes_or_no
         case $prompt_yes_or_no in 
             [Yy]*) 
                 echo "Removing existing dotfiles directory.."
-                rm -rf "${DOTFILES_HOME_DIRECTORY}"
+                rm -rf "${DOTFILES_HOME}"
                 echo "Cloning dotfiles.."
                 wget --quiet --no-check-certificate https://raw.github.com/melvynkim/dotfiles/master/INSTALL.sh -O - | sh
                 ;;
@@ -32,24 +25,24 @@ check_requirements() {
 }
 
 clone_dotfiles() {
-    echo "Cloning dotfiles to ${DOTFILES_HOME_DIRECTORY}.."
-    hash git >/dev/null 2>&1 && /usr/bin/env git clone --quiet --recursive "https://github.com/melvynkim/dotfiles" ${DOTFILES_HOME_DIRECTORY} || 
+    echo "Cloning dotfiles to ${DOTFILES_HOME}.."
+    hash git >/dev/null 2>&1 && /usr/bin/env git clone --quiet --recursive "https://github.com/melvynkim/dotfiles" ${DOTFILES_HOME} || 
     die "git is not installed."    
 }
 
 add_symbolic_links() {
     # zsh
-    ln -s "${DOTFILES_HOME_DIRECTORY}/zshrc.git" "${HOME}/.zsh"
-    ln -s "${DOTFILES_HOME_DIRECTORY}/zshrc.git/.zshrc" "${HOME}/.zshrc"
+    ln -s "${DOTFILES_HOME}/zshrc.git" "${HOME}/.zsh"
+    ln -s "${DOTFILES_HOME}/zshrc.git/.zshrc" "${HOME}/.zshrc"
 
     # vim
-    ln -s "${DOTFILES_HOME_DIRECTORY}/vimrc.git" "${HOME}/.vim"
-    ln -s "${DOTFILES_HOME_DIRECTORY}/vimrc.git/.vimrc" "${HOME}/.vimrc"
+    ln -s "${DOTFILES_HOME}/vimrc.git" "${HOME}/.vim"
+    ln -s "${DOTFILES_HOME}/vimrc.git/.vimrc" "${HOME}/.vimrc"
 
     # git
-    ln -s "${DOTFILES_HOME_DIRECTORY}/git/.gitignore_global" "${HOME}/.gitignore_global"
-    ln -s "${DOTFILES_HOME_DIRECTORY}/git/.gitconfig" "${HOME}/.gitconfig"
-    ln -s "${DOTFILES_HOME_DIRECTORY}/git/.gitattributes" "${HOME}/.gitattributes"
+    ln -s "${DOTFILES_HOME}/git/.gitignore_global" "${HOME}/.gitignore_global"
+    ln -s "${DOTFILES_HOME}/git/.gitconfig" "${HOME}/.gitconfig"
+    ln -s "${DOTFILES_HOME}/git/.gitattributes" "${HOME}/.gitattributes"
 }
 
 die_on_warning() {
@@ -64,7 +57,7 @@ die() {
 }
 
 
-DOTFILES_HOME_DIRECTORY=$(set_dotfiles_home_directory)
+DOTFILES_HOME="${HOME}/.dotfiles"
 check_requirements
 clone_dotfiles
 add_symbolic_links
