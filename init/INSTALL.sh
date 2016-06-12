@@ -45,6 +45,12 @@ add_symbolic_links() {
     ln -s "${DOTFILES_HOME}/git/.gitattributes" "${HOME}/.gitattributes"
 }
 
+install_neobundle_vim() {
+    # install NeoBundle
+    # https://github.com/Shougo/neobundle.vim
+    bash <(curl -s https://raw.githubusercontent.com/Shougo/neobundle.vim/master/bin/install.sh)
+}
+
 die_on_warning() {
     echo "WARNING: $1"
     exit 2
@@ -61,3 +67,4 @@ DOTFILES_HOME="${HOME}/.dotfiles"
 check_requirements
 clone_dotfiles
 add_symbolic_links
+install_neobundle_vim
